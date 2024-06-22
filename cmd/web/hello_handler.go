@@ -1,6 +1,7 @@
 package web
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -12,6 +13,7 @@ func HelloWebHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	name := r.FormValue("name")
+	fmt.Print(name)
 	component := HelloPost(name)
 	err = component.Render(r.Context(), w)
 	if err != nil {

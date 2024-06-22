@@ -6,22 +6,23 @@ import (
 	"net/http"
 
 	"agendahora/cmd/web"
+
 	"github.com/a-h/templ"
-	"github.com/julienschmidt/httprouter"
 )
 
 func (s *Server) RegisterRoutes() http.Handler {
-	r := httprouter.New()
-	r.HandlerFunc(http.MethodGet, "/", s.HelloWorldHandler)
+	mux := http.NewServeMux()
 
-	r.HandlerFunc(http.MethodGet, "/health", s.healthHandler)
+	mux.HandleFunc("GET /hello-world", s.HelloWorldHandler)
+	mux.HandleFunc("GET /health", s.healthHandler)
 
 	fileServer := http.FileServer(http.FS(web.Files))
-	r.Handler(http.MethodGet, "/assets/*filepath", fileServer)
-	r.Handler(http.MethodGet, "/web", templ.Handler(web.HelloForm()))
-	r.HandlerFunc(http.MethodPost, "/hello", web.HelloWebHandler)
 
-	return r
+	mux.Handle("GET /assets/", fileServer)
+	mux.Handle("GET /web", templ.Handler(web.HelloForm()))
+	mux.HandleFunc("POST /hello", web.HelloWebHandler)
+
+	return mux
 }
 
 func (s *Server) HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
