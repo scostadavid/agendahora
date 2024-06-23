@@ -14,7 +14,7 @@ run:
 	@go run cmd/api/main.go
 
 # Create DB container
-docker-run:
+docker-up:
 	@if docker compose up 2>/dev/null; then \
 		: ; \
 	else \

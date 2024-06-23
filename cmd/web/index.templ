@@ -2,7 +2,7 @@ package web
 
 templ Index() {
 	<!DOCTYPE html>
-	<html lang="en" data-theme="light">
+	<html lang="en" data-theme="dark">
 		<head>
 			<meta charset="utf-8"/>
 
@@ -12,6 +12,19 @@ templ Index() {
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📘</text></svg>" />
 
+			<style>
+					/* Estilos do toast */
+					.toast {
+							position: fixed;
+							top: 20px;
+							right: 20px;
+							background-color: #4CAF50;
+							color: white;
+							padding: 16px;
+							z-index: 1;
+							display: none; /* Inicialmente oculto */
+					}
+			</style>
 
 		  <title>Agenda hora | agedamento de serviços</title>
       <link href="assets/css/output.css" rel="stylesheet"/>
