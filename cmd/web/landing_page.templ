@@ -19,24 +19,14 @@ templ LandingPage() {
 
       <!-- hero -->
       <section class="justify-center h-screen flex flex-col items-center">
-        <h2 class="text-5xl text-center font-bold mb-4">
-          <span class="bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">Agendamento</span> de serviços <span class="bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">facilitado</span>
+        <h2 class="text-4xl md:text-5xl text-center font-bold mb-4">
+          <span class="bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">Gestão</span> de agenda <span class="bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">descomplicada</span>
         </h2>
 
-        <p class="primary-content mb-8 text-center">Dê adeus às agendas de papel, cancelamentos de última hora e transforme a maneira como você gerencia sua agenda com uma experiência mais profissional e satisfatória para seus clientes
-          <!-- <span class="bg-gradient-to-r from-primary-500 to-primary-300 bg-clip-text text-transparent">
-            Discord
-          </span>,
-          <span class="bg-gradient-to-r from-green-500 to-green-300 bg-clip-text text-transparent">
-            WhatsApp
-          </span>and
-          <span class="bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent">
-            Slack
-          </span> notifications for your service outages -->
-        </p>
+        <p class="primary-content mb-8 text-center">Simplifique sua rotina e ofereça uma experiência de  <span class="bg-gradient-to-r from-primary to-primary bg-clip-text text-transparent">agendamento de horários</span> simplificada aos seus clientes</p>
 
 
-        <form id="email-form" hx-post="/add" hx-target="#toast-container" hx-swap="innerHTML" class="mt-2 flex flex-row gap-2">
+        <form id="email-form" hx-post="/add" hx-target="#toast-container" hx-swap="innerHTML" class="mt-2 flex flex-col md:flex-row gap-2">
           <label class="input input-bordered flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" /><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" /></svg>
             <input type="text" name="email" id="email-input" class="grow" placeholder="Digite seu melhor e-mail" required/>
