@@ -1,4 +1,4 @@
-# 📘 Agenda Hora | Professionals appointment scheduling 
+# 📘 Agenda Hora | Professional appointment scheduling
 
 ## Getting Started
 
