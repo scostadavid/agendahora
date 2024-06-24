@@ -41,3 +41,9 @@ clean up binary from the last build
 ```bash
 make clean
 ```
+
+
+## Maintainers/Contributors
+
+* David Costa - [scostadavid@proton.me](mailto:scostadavid@proton.me)
+
