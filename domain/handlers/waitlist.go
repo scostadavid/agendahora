@@ -1,9 +1,12 @@
 package handlers
 
 import (
+	"agendahora/domain/dto"
 	"agendahora/domain/services"
 	"fmt"
 	"net/http"
+
+	"github.com/go-playground/validator/v10"
 )
 
 // o handler pode receber todos os services que quiser
@@ -26,11 +29,19 @@ func (h *WaitlistHandler) AddToWaitList(w http.ResponseWriter, r *http.Request) 
 
 	email := r.FormValue("email")
 
-	// buscar o email anta
+	validate := validator.New()
+
+	err = validate.Struct(&dto.AddToWaitlistDTO{Email: email})
+
+	if err != nil {
+		fmt.Fprintf(w, `<div class="toast-container bg-warning"><p class="text-warning-content">E-mail inválido</p></div>`)
+		return
+	}
+
 	found := h.waitlistService.FindByEmail(r.Context(), email)
 
 	if found.Email == email {
-		fmt.Fprintf(w, `<div class="toast-container bg-warning toast-error">email %s. já foi adicionado Tente novamente mais tarde.</div>`, email)
+		fmt.Fprintf(w, `<div class="toast-container bg-warning"><p class="text-warning-content">O e-mail já foi adicionado</p></div>`)
 		return
 	}
 
@@ -39,13 +50,12 @@ func (h *WaitlistHandler) AddToWaitList(w http.ResponseWriter, r *http.Request) 
 	// [] extrair isso em componentes
 	// [] resposnvo mobile
 	// [] impedir a pessoa de fazer varias requisições travando o botão ou algo assim
-	// validação de email
 	// [] subida do v1
 
 	if err != nil {
-		fmt.Fprintf(w, `<div class="toast-container bg-error toast-error">Falha ao adicionar o email %s. Tente novamente mais tarde.</div>`, email)
+		fmt.Fprintf(w, `<div class="toast-container bg-error"><p class="text-error-content">Falha ao adicionar o e-mail %s</p></div>`, email)
 		return
 	}
 
-	fmt.Fprintf(w, `<div class="toast-container bg-success">Email %s adicionado com sucesso!</div>`, email)
+	fmt.Fprintf(w, `<div class="toast-container bg-success"><p class="text-success-content">%s adicionado a lista de espera</p></div>`, email)
 }
