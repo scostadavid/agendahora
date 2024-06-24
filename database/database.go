@@ -19,10 +19,11 @@ var (
 	port     = os.Getenv("DB_PORT")
 	host     = os.Getenv("DB_HOST")
 	schema   = os.Getenv("DB_SCHEMA")
+	ssl      = os.Getenv("DB_SSL")
 )
 
 func New() *gorm.DB {
-	connStr := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, username, password, database, port)
+	connStr := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s", host, username, password, database, port, ssl)
 	db, err := gorm.Open(postgres.Open(connStr), &gorm.Config{})
 
 	if err != nil {
